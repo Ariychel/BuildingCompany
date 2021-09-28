@@ -3,16 +3,17 @@ package com.company;
 import java.util.Objects;
 
 public class BuildingCompany {
-    String nameOfCompany, numberOfEmployees, numberOfDoneProjects, numberOfOffices;
+    protected String nameOfCompany;
+    protected int numberOfEmployees, numberOfDoneProjects, numberOfOffices;
 
     public BuildingCompany(){
         nameOfCompany="NULL";
-        numberOfEmployees="0";
-        numberOfDoneProjects="0";
-        numberOfOffices="0";
+        numberOfEmployees=0;
+        numberOfDoneProjects=0;
+        numberOfOffices=0;
     }
 
-    public BuildingCompany(String nameOfCompany, String numberOfEmployees, String numberOfDoneProjects, String numberOfOffices){
+    public BuildingCompany(String nameOfCompany, int numberOfEmployees, int numberOfDoneProjects, int numberOfOffices){
         this.nameOfCompany=nameOfCompany;
         this.numberOfEmployees=numberOfEmployees;
         this.numberOfDoneProjects=numberOfDoneProjects;
@@ -23,19 +24,19 @@ public class BuildingCompany {
         this.nameOfCompany=nameOfCompany;
     }
 
-    public void setNumberOfEmployees(String numberOfEmployees){
+    public void setNumberOfEmployees(int numberOfEmployees){
         this.numberOfEmployees=numberOfEmployees;
     }
 
-    public void setNumberOfDoneProjects(String numberOfDoneProjects){
+    public void setNumberOfDoneProjects(int numberOfDoneProjects){
         this.numberOfDoneProjects=numberOfDoneProjects;
     }
 
-    public void setNumberOfOffices(String numberOfOffices){
+    public void setNumberOfOffices(int numberOfOffices){
         this.numberOfOffices=numberOfOffices;
     }
 
-    public void setAll(String nameOfCompany, String numberOfEmployees, String numberOfDoneProjects, String numberOfOffices){
+    public void setAll(String nameOfCompany, int numberOfEmployees, int numberOfDoneProjects, int numberOfOffices){
         this.nameOfCompany=nameOfCompany;
         this.numberOfEmployees=numberOfEmployees;
         this.numberOfDoneProjects=numberOfDoneProjects;
@@ -46,16 +47,26 @@ public class BuildingCompany {
         return nameOfCompany;
     }
 
-    public String getNumberOfEmployees(){
+    public int getNumberOfEmployees(){
         return numberOfEmployees;
     }
 
-    public String getNumberOfDoneProjects(){
+    public int getNumberOfDoneProjects(){
         return numberOfDoneProjects;
     }
 
-    public String getNumberOfOffices(){
+    public int getNumberOfOffices(){
         return  numberOfOffices;
+    }
+
+    @Override
+    public String toString() {
+        return "BuildingCompany{" +
+                "nameOfCompany='" + nameOfCompany + '\'' +
+                ", numberOfEmployees=" + numberOfEmployees +
+                ", numberOfDoneProjects=" + numberOfDoneProjects +
+                ", numberOfOffices=" + numberOfOffices +
+                '}';
     }
 
     @Override
