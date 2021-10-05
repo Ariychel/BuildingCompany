@@ -1,5 +1,8 @@
 package com.company;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import java.util.Objects;
 import java.util.Scanner;
 import java.util.ArrayList;
@@ -9,6 +12,7 @@ public class Storage extends BuildingCompany{
     private String addressOfStorage;
     private ArrayList<String> listOfMaterials = new ArrayList<String>();
     private ArrayList<Integer> countOfMaterial = new ArrayList<Integer>();
+    private static final Logger logger = LogManager.getLogger(Storage.class);
 
     public Storage(){
         addressOfStorage = "";
@@ -28,19 +32,19 @@ public class Storage extends BuildingCompany{
 
     void inputListOfMaterials(){
         String messageOne = "Input count of materials - ";
-        System.out.print(messageOne);
+        logger.info(messageOne);
         Scanner in = new Scanner(System.in);
         int countOfMaterials = in.nextInt();
 
         for (int i=0; i < countOfMaterials; i++){
             Scanner scanner = new Scanner(System.in);
             String messageTwo = "Input name of material - ";
-            System.out.print(messageTwo);
+            logger.info(messageTwo);
             String nameOfMaterial = scanner.nextLine();
             listOfMaterials.add(nameOfMaterial);
 
             String messageThree = "Input count of this material - ";
-            System.out.print(messageThree);
+            logger.info(messageThree);
             int count = scanner.nextInt();
             countOfMaterial.add(count);
         }
@@ -49,9 +53,9 @@ public class Storage extends BuildingCompany{
 
     void outputListOfMaterials(){
         String messageOne = "   Name      Count   ";
-        System.out.println(messageOne);
+        logger.info(messageOne);
         for (int i=0; i<listOfMaterials.size(); i++){
-            System.out.println(listOfMaterials.get(i)+" "+ countOfMaterial.get(i));
+            logger.info(listOfMaterials.get(i)+" "+ countOfMaterial.get(i));
         }
     }
 

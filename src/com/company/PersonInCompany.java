@@ -1,11 +1,15 @@
 package com.company;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import java.util.Scanner;
 
 public final class PersonInCompany implements DirectorOfCompany, OwnerOfCompany {
     String nameOfPerson, nameOfOwner;
     int ageOfPerson, ageOfOwner;
     boolean ifDirector,ifOwner;
+    private static final Logger logger = LogManager.getLogger(PersonInCompany.class);
 
     public PersonInCompany(){
         nameOfPerson = "Noname";
@@ -56,19 +60,19 @@ public final class PersonInCompany implements DirectorOfCompany, OwnerOfCompany 
         Scanner in = new Scanner(System.in);
 
         String firstQuestion = "This person is director of company?(yes/no): ";
-        System.out.print(firstQuestion);
+        logger.info(firstQuestion);
         String firstAnswer = in.nextLine();
         ifDirector = firstAnswer.equals("yes");
 
         String secondQuestion = "This person is owner of company?(yes/no): ";
-        System.out.print(secondQuestion);
+        logger.info(secondQuestion);
         String secondAnswer = in.nextLine();
         ifOwner = secondAnswer.equals("yes");
 
         if (ifDirector & ifOwner & true){
 
             String whoThisPerson = "This person is director and owner of this company";
-            System.out.println(whoThisPerson);
+            logger.info(whoThisPerson);
 
         } else {
 
@@ -96,7 +100,7 @@ public final class PersonInCompany implements DirectorOfCompany, OwnerOfCompany 
                 }
             }
 
-            System.out.println(whoThisPerson);
+            logger.info(whoThisPerson);
 
         }
     }

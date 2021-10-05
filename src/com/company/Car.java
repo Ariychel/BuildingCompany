@@ -1,5 +1,8 @@
 package com.company;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import java.util.Objects;
 
 public final class Car implements TypeOfCar {
@@ -7,6 +10,7 @@ public final class Car implements TypeOfCar {
     Storage storage = new Storage();
     Client client = new Client();
     String typeOfEngine, maximumLoadCapacity;
+    private static final Logger logger = LogManager.getLogger(Car.class);
 
     public Car(){
         storage.setAddressOfStorage("");
@@ -26,9 +30,9 @@ public final class Car implements TypeOfCar {
     public void roadToTheStorage() {
 
         String messageOne = "The car is going to the storage now.";
-        System.out.println(messageOne);
+        logger.info(messageOne);
         String messageTwo = "The address of storage is " + storage.getAddressOfStorage();
-        System.out.println(messageTwo);
+        logger.info(messageTwo);
 
     }
 
@@ -36,9 +40,9 @@ public final class Car implements TypeOfCar {
     public void roadToTheClient() {
 
         String messageOne = "The car is going to the client now.";
-        System.out.println(messageOne);
+        logger.info(messageOne);
         String messageTwo = "The address of client is " + client.getAddressOfClient();
-        System.out.println(messageTwo);
+        logger.info(messageTwo);
 
     }
 

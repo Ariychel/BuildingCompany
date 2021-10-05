@@ -1,9 +1,12 @@
 package com.company;
 
-import java.sql.SQLOutput;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import java.util.Scanner;
+
 public class SalaryInCompany implements InterfaceForSalary {
     String[][] tableOfSalary;
+    private static final Logger logger = LogManager.getLogger(SalaryInCompany.class);
 
     public SalaryInCompany(){
         tableOfSalary = new String[][]{{"Director: ", ""}, {"Owner: ", ""}, {"Engineer: ", ""},
@@ -13,27 +16,24 @@ public class SalaryInCompany implements InterfaceForSalary {
     public void setSalary() {
         Scanner scanner = new Scanner(System.in);
         String messageOne = "Enter salary of every person if company:";
-        System.out.println(messageOne);
+        logger.info(messageOne);
 
         for (int i=0; i<5; i++){
-                System.out.print(tableOfSalary[i][0]);
+                logger.info(tableOfSalary[i][0]);
                 String enteredText = scanner.nextLine();
                 tableOfSalary[i][1] = enteredText;
         }
-
-        System.out.println();
 
     }
 
     @Override
     public void getSalary() {
         String messageOne = "Table of Salary:";
-        System.out.println(messageOne);
+        logger.info(messageOne);
         for (int i=0; i<5; i++){
             for (int j=0; j<2; j++){
-                System.out.print(tableOfSalary[i][j]);
+                logger.info(tableOfSalary[i][j]);
             }
-            System.out.println();
         }
     }
 }
