@@ -1,13 +1,13 @@
 package com.company;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
 import java.util.Objects;
 import java.util.Scanner;
 
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
+
 public class BuildingCompany {
-    protected String nameOfCompany;
+    private String nameOfCompany;
     protected int numberOfEmployees, numberOfDoneProjects, numberOfOffices;
     private static final Logger logger = LogManager.getLogger(BuildingCompany.class);
 
@@ -108,7 +108,8 @@ public class BuildingCompany {
 
         int needEmployees;
         {
-            int tmpNeedEmployees = houseArea / 10 + 1;
+
+            int quaterMetersForOne = 10, tmpNeedEmployees = houseArea / quaterMetersForOne + 1;
 
             if (tmpNeedEmployees <= contractorCompany.getNumberOfEmployees()){
                 needEmployees = tmpNeedEmployees;
@@ -119,30 +120,31 @@ public class BuildingCompany {
 
         Time howLongItTakes = new Time();
         {
-
-            double areaForOneEmployee = houseArea / needEmployees;
-            int days = (int)(areaForOneEmployee * 35);
-            if (houseArea <= 100){
+            int timeForOneEmployee = 35, OneHundredQM = 100, TwoHundredQM = 200;
+            double areaForOneEmployee = houseArea / needEmployees, pct15 = 0.15, pct35 = 0.35;
+            int days = (int)(areaForOneEmployee * timeForOneEmployee);
+            if (houseArea <= OneHundredQM){
                 howLongItTakes.setHowLongItTakes(days);
-            } else if (houseArea > 100 == houseArea <= 200) {
-                int days15Pct = (int)(days * 0.15);
+            } else if (houseArea > OneHundredQM == houseArea <= TwoHundredQM) {
+                int days15Pct = (int)(days * pct15);
                 days += days15Pct;
                 howLongItTakes.setHowLongItTakes(days);
             } else {
-                int days35Pct = (int)(days * 0.35);
+                int days35Pct = (int)(days * pct35);
                 days += days35Pct;
                 howLongItTakes.setHowLongItTakes(days);
             }
 
         }
 
-        logger.info("\n" +
-                    "Client's name is "+ client.getNameOfClient()+".\n" +
-                    "Area of the house is "+houseArea+" square meters.\n" +
-                    "Contractor's company name is "+contractorCompany.getNameOfContractor()+".\n" +
-                    "For this work company give "+needEmployees+" employees.\n" +
-                    "This work takes "+howLongItTakes.getDays()+" days.\n" +
-                    "Price for all work is "+priceForAllWork + "$.\n");
+        String endList = "\n" +
+                "Client's name is "+ client.getNameOfClient()+".\n" +
+                "Area of the house is "+houseArea+" square meters.\n" +
+                "Contractor's company name is "+contractorCompany.getNameOfContractor()+".\n" +
+                "For this work company give "+needEmployees+" employees.\n" +
+                "This work takes "+howLongItTakes.getDays()+" days.\n" +
+                "Price for all work is "+priceForAllWork + "$.\n";
+        logger.info(endList);
     }
 
 

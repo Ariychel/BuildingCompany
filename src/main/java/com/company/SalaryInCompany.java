@@ -1,10 +1,11 @@
 package com.company;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import java.util.Scanner;
 
-public class SalaryInCompany implements InterfaceForSalary {
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
+
+public class SalaryInCompany {
     String[][] tableOfSalary;
     private static final Logger logger = LogManager.getLogger(SalaryInCompany.class);
 
@@ -12,11 +13,11 @@ public class SalaryInCompany implements InterfaceForSalary {
         tableOfSalary = new String[][]{{"Director: ", ""}, {"Owner: ", ""}, {"Engineer: ", ""},
                 {"Lawyer: ",""},{"Contractor: ",""}};
     }
-    @Override
+
     public void setSalary() {
         Scanner scanner = new Scanner(System.in);
-        String messageOne = "Enter salary of every person if company:";
-        logger.info(messageOne);
+        String enterSalary = "Enter salary of every person in company:";
+        logger.info(enterSalary);
 
         for (int i=0; i<5; i++){
                 logger.info(tableOfSalary[i][0]);
@@ -26,10 +27,9 @@ public class SalaryInCompany implements InterfaceForSalary {
 
     }
 
-    @Override
     public void getSalary() {
-        String messageOne = "Table of Salary:";
-        logger.info(messageOne);
+        String table = "Table of Salary:";
+        logger.info(table);
         for (int i=0; i<5; i++){
             for (int j=0; j<2; j++){
                 logger.info(tableOfSalary[i][j]);

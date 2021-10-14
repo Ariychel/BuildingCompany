@@ -2,7 +2,7 @@ package com.company;
 
 import java.util.Objects;
 
-public class LawDepartment extends BuildingCompany{
+public class LawDepartment{
     protected String nameOfDirector;
     protected int numberOfLawyers;
 
@@ -13,9 +13,11 @@ public class LawDepartment extends BuildingCompany{
 
 
 
-    public LawDepartment(String nameOfDirector, int numberOfLawyers) throws Exception {
+    public LawDepartment(String nameOfDirector, int numberOfLawyers, BuildingCompany buildingCompany,
+                         EngineeringDepartment engineeringDepartment) throws Exception {
+
         this.nameOfDirector=nameOfDirector;
-        if(numberOfLawyers<=super.numberOfEmployees){
+        if(numberOfLawyers+engineeringDepartment.getNumberOfEngineers()<=buildingCompany.getNumberOfEmployees()){
             this.numberOfLawyers=numberOfLawyers;
         } else {
             throw new Exception("Number of lawyers bigger than number company's employees");
@@ -26,8 +28,10 @@ public class LawDepartment extends BuildingCompany{
         this.nameOfDirector=nameOfDirector;
     }
 
-    public void setNumberOfLawyers(int numberOfLawyers) throws Exception {
-        if(numberOfLawyers<=super.numberOfEmployees) {
+    public void setNumberOfLawyers(int numberOfLawyers, BuildingCompany buildingCompany,
+                                   EngineeringDepartment engineeringDepartment) throws Exception {
+
+        if(numberOfLawyers+engineeringDepartment.getNumberOfEngineers()<=buildingCompany.getNumberOfEmployees()) {
             this.numberOfLawyers = numberOfLawyers;
         } else {
             throw new Exception("Number of lawyers bigger than number company's employees");
@@ -47,10 +51,6 @@ public class LawDepartment extends BuildingCompany{
         return "LawDepartment{" +
                 "nameOfDirector='" + nameOfDirector + '\'' +
                 ", numberOfLawyers=" + numberOfLawyers +
-                ", nameOfCompany='" + nameOfCompany + '\'' +
-                ", numberOfEmployees=" + numberOfEmployees +
-                ", numberOfDoneProjects=" + numberOfDoneProjects +
-                ", numberOfOffices=" + numberOfOffices +
                 '}';
     }
 

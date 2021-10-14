@@ -1,13 +1,13 @@
 package com.company;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
 import java.util.Objects;
 import java.util.Scanner;
 import java.util.ArrayList;
 
-public class Storage extends BuildingCompany{
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
+
+public class Storage {
 
     private String addressOfStorage;
     private ArrayList<String> listOfMaterials = new ArrayList<String>();
@@ -31,19 +31,19 @@ public class Storage extends BuildingCompany{
     }
 
     void inputListOfMaterials(){
-        String messageOne = "Input count of materials - ";
+        String messageOne = "Enter count of materials - ";
         logger.info(messageOne);
         Scanner in = new Scanner(System.in);
         int countOfMaterials = in.nextInt();
 
         for (int i=0; i < countOfMaterials; i++){
             Scanner scanner = new Scanner(System.in);
-            String messageTwo = "Input name of material - ";
+            String messageTwo = "Enter name of material - ";
             logger.info(messageTwo);
             String nameOfMaterial = scanner.nextLine();
             listOfMaterials.add(nameOfMaterial);
 
-            String messageThree = "Input count of this material - ";
+            String messageThree = "Enter count of this material - ";
             logger.info(messageThree);
             int count = scanner.nextInt();
             countOfMaterial.add(count);
@@ -61,12 +61,10 @@ public class Storage extends BuildingCompany{
 
     @Override
     public String toString() {
-        return "Materials{" +
-                "adressOfStorage='" + addressOfStorage + '\'' +
-                ", nameOfCompany='" + nameOfCompany + '\'' +
-                ", numberOfEmployees=" + numberOfEmployees +
-                ", numberOfDoneProjects=" + numberOfDoneProjects +
-                ", numberOfOffices=" + numberOfOffices +
+        return "Storage{" +
+                "addressOfStorage='" + addressOfStorage + '\'' +
+                ", listOfMaterials=" + listOfMaterials +
+                ", countOfMaterial=" + countOfMaterial +
                 '}';
     }
 

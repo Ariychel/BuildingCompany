@@ -2,7 +2,7 @@ package com.company;
 
 import java.util.Objects;
 
-public class EngineeringDepartment extends BuildingCompany{
+public class EngineeringDepartment{
 
     protected String nameOfDirector;
     protected int numberOfEngineers;
@@ -12,9 +12,11 @@ public class EngineeringDepartment extends BuildingCompany{
         numberOfEngineers=0;
     }
 
-    public EngineeringDepartment(String nameOfDirector, int numberOfEngineers) throws Exception {
+    public EngineeringDepartment(String nameOfDirector, int numberOfEngineers, BuildingCompany buildingCompany,
+                                 LawDepartment lawDepartment) throws Exception {
+
         this.nameOfDirector=nameOfDirector;
-        if(numberOfEngineers<=super.numberOfEmployees){
+        if(numberOfEngineers+lawDepartment.getNumberOfLawyers()<=buildingCompany.getNumberOfEmployees()){
         this.numberOfEngineers=numberOfEngineers;
         } else {
             throw new Exception("Number of engineers bigger than number company's employees");
@@ -25,8 +27,10 @@ public class EngineeringDepartment extends BuildingCompany{
         this.nameOfDirector=nameOfDirector;
     }
 
-    public void setNumberOfEngineers(int numberOfEngineers) throws Exception {
-        if(numberOfEngineers<=super.numberOfEmployees) {
+    public void setNumberOfEngineers(int numberOfEngineers, BuildingCompany buildingCompany,
+                                     LawDepartment lawDepartment) throws Exception {
+
+        if(numberOfEngineers+lawDepartment.getNumberOfLawyers()<=buildingCompany.getNumberOfEmployees()) {
             this.numberOfEngineers = numberOfEngineers;
         } else {
             throw new Exception("Number of engineers bigger than number company's employees");
@@ -43,12 +47,7 @@ public class EngineeringDepartment extends BuildingCompany{
 
     @Override
     public String toString() {
-        return "BuildingCompany{" +
-                "nameOfCompany='" + nameOfCompany + '\'' +
-                ", numberOfEmployees=" + numberOfEmployees +
-                ", numberOfDoneProjects=" + numberOfDoneProjects +
-                ", numberOfOffices=" + numberOfOffices +
-                '}'+"EngineeringDepartment{" +
+        return "EngineeringDepartment{" +
                 "nameOfDirector='" + nameOfDirector + '\'' +
                 ", numberOfEngineers=" + numberOfEngineers +
                 '}';
