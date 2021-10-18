@@ -3,13 +3,14 @@ package com.company;
 import java.util.Objects;
 import java.util.Scanner;
 
-import org.apache.log4j.LogManager;
+import org.apache.commons.lang3.RandomUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 
 public class BuildingCompany {
     private String nameOfCompany;
     protected int numberOfEmployees, numberOfDoneProjects, numberOfOffices;
-    private static final Logger logger = LogManager.getLogger(BuildingCompany.class);
+    private static final Logger LOGGER = Logger.getLogger(BuildingCompany.class);
 
     public BuildingCompany(){
         nameOfCompany="NULL";
@@ -23,6 +24,13 @@ public class BuildingCompany {
         this.numberOfEmployees=numberOfEmployees;
         this.numberOfDoneProjects=numberOfDoneProjects;
         this.numberOfOffices=numberOfOffices;
+    }
+
+    public BuildingCompany(String nameOfCompany, int numberOfEmployees, int numberOfDoneProjects){
+        this.nameOfCompany=nameOfCompany;
+        this.numberOfEmployees=numberOfEmployees;
+        this.numberOfDoneProjects=numberOfDoneProjects;
+        this.numberOfOffices = RandomUtils.nextInt(5,15);
     }
 
     public void setNameOfCompany(String nameOfCompany){
@@ -70,7 +78,7 @@ public class BuildingCompany {
         {
             Scanner scanner = new Scanner(System.in);
             String messageOne = "Enter Client's name: ";
-            logger.info(messageOne);
+            LOGGER.info(messageOne);
             String clientName = scanner.nextLine();
             client.setNameOfClient(clientName);
         }
@@ -79,7 +87,7 @@ public class BuildingCompany {
         {
             Scanner scanner = new Scanner(System.in);
             String messageOne = "Enter area of the house: ";
-            logger.info(messageOne);
+            LOGGER.info(messageOne);
             houseArea = scanner.nextInt();
         }
 
@@ -87,7 +95,7 @@ public class BuildingCompany {
         {
             Scanner scanner = new Scanner(System.in);
             String messageOne = "Enter price for one square meter(USA Dollar): ";
-            logger.info(messageOne);
+            LOGGER.info(messageOne);
             double priceForOneSquareMeter = scanner.nextDouble();
             priceForAllWork = (int)(houseArea * priceForOneSquareMeter);
         }
@@ -96,12 +104,12 @@ public class BuildingCompany {
         {
             Scanner scanner = new Scanner(System.in);
             String messageOne = "Enter contractor's company name: ";
-            logger.info(messageOne);
+            LOGGER.info(messageOne);
             String contractorCompanyName = scanner.nextLine();
             contractorCompany.setNameOfContractor(contractorCompanyName);
 
             String messageTwo = "Enter count of number of employees: ";
-            logger.info(messageTwo);
+            LOGGER.info(messageTwo);
             int numberOfEmployees = scanner.nextInt();
             contractorCompany.setNumberOfEmployees(numberOfEmployees);
         }
@@ -144,7 +152,8 @@ public class BuildingCompany {
                 "For this work company give "+needEmployees+" employees.\n" +
                 "This work takes "+howLongItTakes.getDays()+" days.\n" +
                 "Price for all work is "+priceForAllWork + "$.\n";
-        logger.info(endList);
+        boolean ifEmpty = StringUtils.isEmpty(endList);
+        LOGGER.info(endList+"\n"+"This string is "+ifEmpty);
     }
 
 

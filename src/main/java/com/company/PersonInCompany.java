@@ -2,13 +2,12 @@ package com.company;
 
 import java.util.Scanner;
 
-import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
 public final class PersonInCompany extends Employee implements IManagement, IHavingCompany {
 
     private boolean ifDirector,ifOwner;
-    private static final Logger logger = LogManager.getLogger(PersonInCompany.class);
+    private static final Logger LOGGER = Logger.getLogger(PersonInCompany.class);
 
     public PersonInCompany(){
         name = "Noname";
@@ -46,19 +45,19 @@ public final class PersonInCompany extends Employee implements IManagement, IHav
         Scanner in = new Scanner(System.in);
 
         String firstQuestion = "This person is director of company?(yes/no): ";
-        logger.info(firstQuestion);
+        LOGGER.info(firstQuestion);
         String firstAnswer = in.nextLine();
         ifDirector = firstAnswer.equals("yes");
 
         String secondQuestion = "This person is owner of company?(yes/no): ";
-        logger.info(secondQuestion);
+        LOGGER.info(secondQuestion);
         String secondAnswer = in.nextLine();
         ifOwner = secondAnswer.equals("yes");
 
         if (ifDirector & ifOwner & true){
 
             String whoThisPerson = "This person is director and owner of this company";
-            logger.info(whoThisPerson);
+            LOGGER.info(whoThisPerson);
 
         } else {
 
@@ -86,7 +85,7 @@ public final class PersonInCompany extends Employee implements IManagement, IHav
                 }
             }
 
-            logger.info(whoThisPerson);
+            LOGGER.info(whoThisPerson);
 
         }
     }
@@ -96,11 +95,11 @@ public final class PersonInCompany extends Employee implements IManagement, IHav
     public void buyNewOffice(BuildingCompany buildingCompany) {
         if (ifOwner){
             String ownerBuyNewOffice = "The owner is going to buy a new office.";
-            logger.info(ownerBuyNewOffice);
+            LOGGER.info(ownerBuyNewOffice);
             buildingCompany.numberOfOffices++;
         } else {
             String thisPersonNotOwner = this.name+" isn't a owner of company.";
-            logger.info(thisPersonNotOwner);
+            LOGGER.info(thisPersonNotOwner);
         }
     }
 
@@ -108,11 +107,11 @@ public final class PersonInCompany extends Employee implements IManagement, IHav
     public void soldOffice(BuildingCompany buildingCompany) {
         if (ifOwner){
             String ownerSoldOffice ="The owner sold the office.";
-            logger.info(ownerSoldOffice);
+            LOGGER.info(ownerSoldOffice);
             buildingCompany.numberOfOffices--;
         } else {
             String thisPersonNotOwner = this.name+" isn't a owner of company.";
-            logger.info(thisPersonNotOwner);
+            LOGGER.info(thisPersonNotOwner);
         }
     }
 
@@ -122,14 +121,14 @@ public final class PersonInCompany extends Employee implements IManagement, IHav
 
         if (ifDirector){
             String firstQuestion = "How much dissmiss employees: ";
-            logger.info(firstQuestion);
+            LOGGER.info(firstQuestion);
             int countOfEmployees = in.nextInt();
             String directorDissmissEmployees = "The director is going to dissmiss "+countOfEmployees+" employees.";
-            logger.info(directorDissmissEmployees);
+            LOGGER.info(directorDissmissEmployees);
             buildingCompany.numberOfEmployees -= countOfEmployees;
         } else {
             String thisPersonNotDirector = this.name+" isn't the director of company.";
-            logger.info(thisPersonNotDirector);
+            LOGGER.info(thisPersonNotDirector);
         }
     }
 
@@ -139,14 +138,14 @@ public final class PersonInCompany extends Employee implements IManagement, IHav
 
         if (ifDirector){
             String firstQuestion = "How much hire employees: ";
-            logger.info(firstQuestion);
+            LOGGER.info(firstQuestion);
             int countOfEmployees = in.nextInt();
             String directorDissmissEmployees = "The director is going to hire "+countOfEmployees+" employees.";
-            logger.info(directorDissmissEmployees);
+            LOGGER.info(directorDissmissEmployees);
             buildingCompany.numberOfEmployees += countOfEmployees;
         } else {
             String thisPersonNotDirector = this.name+" isn't the director of company.";
-            logger.info(thisPersonNotDirector);
+            LOGGER.info(thisPersonNotDirector);
         }
 
     }

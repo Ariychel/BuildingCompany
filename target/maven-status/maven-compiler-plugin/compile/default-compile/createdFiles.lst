@@ -16,4 +16,5 @@ com\company\Engineering.class
 com\company\IManagement.class
 com\company\IDriveCar.class
 com\company\Client.class
+com\company\Employee.class
 com\company\LawDepartment.class

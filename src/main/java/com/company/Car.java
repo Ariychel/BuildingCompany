@@ -2,13 +2,12 @@ package com.company;
 
 import java.util.Objects;
 
-import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
 public final class Car implements IDriveCar {
 
     String typeOfEngine, maximumLoadCapacity;
-    private static final Logger logger = LogManager.getLogger(Car.class);
+    private static final Logger LOGGER = Logger.getLogger(Car.class);
 
     public Car(){
         typeOfEngine = "";
@@ -23,17 +22,17 @@ public final class Car implements IDriveCar {
     @Override
     public void roadToTheStorage(Storage storage) {
         String infoMessage = "The car is going to the storage now.";
-        logger.info(infoMessage);
+        LOGGER.info(infoMessage);
         String addressStorage = "The address of storage is " + storage.getAddressOfStorage();
-        logger.info(addressStorage);
+        LOGGER.info(addressStorage);
     }
 
     @Override
     public void roadToTheClient(Client client) {
         String infoMessage = "The car is going to the client now.";
-        logger.info(infoMessage);
+        LOGGER.info(infoMessage);
         String addressClient = "The address of client is " + client.getAddressOfClient();
-        logger.info(addressClient);
+        LOGGER.info(addressClient);
     }
 
     public void setTypeOfEngine(String typeOfEngine) {

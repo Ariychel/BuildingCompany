@@ -2,12 +2,11 @@ package com.company;
 
 import java.util.Objects;
 
-import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
 public class Engineer extends Employee implements Engineering {
 
-    private static final Logger logger = LogManager.getLogger(Engineer.class);
+    private static final Logger LOGGER = Logger.getLogger(Engineer.class);
 
     public Engineer(){
         name="Noname";
@@ -49,6 +48,6 @@ public class Engineer extends Employee implements Engineering {
     @Override
     public void EngineeringNewHouse() {
         String engineeringNewHouse = this.getName()+" engineering a new house.";
-        logger.info(engineeringNewHouse);
+        LOGGER.info(engineeringNewHouse);
     }
 }

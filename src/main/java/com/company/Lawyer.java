@@ -2,12 +2,11 @@ package com.company;
 
 import java.util.Objects;
 
-import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
 public final class Lawyer extends Employee implements Signing{
 
-    private static final Logger logger = LogManager.getLogger(BuildingCompany.class);
+    private static final Logger LOGGER = Logger.getLogger(BuildingCompany.class);
 
     public Lawyer(){
         name="Noname";
@@ -50,6 +49,6 @@ public final class Lawyer extends Employee implements Signing{
     @Override
     public void signTheAgreement() {
         String signingTheAgreement = this.getName()+" is signing the agreement with new client.";
-        logger.info(signingTheAgreement);
+        LOGGER.info(signingTheAgreement);
     }
 }
