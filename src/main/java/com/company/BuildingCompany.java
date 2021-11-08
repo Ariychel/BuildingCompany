@@ -2,6 +2,8 @@ package com.company;
 
 import java.util.Objects;
 import java.util.Scanner;
+import java.util.function.BinaryOperator;
+import java.util.stream.Stream;
 
 import org.apache.commons.lang3.RandomUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -35,6 +37,33 @@ public class BuildingCompany {
 
     public void setNameOfCompany(String nameOfCompany){
         this.nameOfCompany=nameOfCompany;
+    }
+
+    public void setNameWithEnum() throws Exception {
+
+        String messageForDisplayValues = "Available companies:";
+        LOGGER.info(messageForDisplayValues);
+        Stream.of(CompanyNames.values()).map(companyNames1 -> companyNames1.ordinal()+1 +": "+companyNames1.getTitle())
+                .forEach(LOGGER::info);
+
+        String messageForGiveChoice = "Enter company's number for choice it: ";
+        LOGGER.info(messageForGiveChoice);
+        Scanner scanner = new Scanner(System.in);
+        int choiceNumber = scanner.nextInt();
+
+         switch (choiceNumber){
+            case 1:
+                this.nameOfCompany = String.valueOf(CompanyNames.DAVINCHI.getTitle());
+                break;
+            case 2:
+                this.nameOfCompany = String.valueOf(CompanyNames.MALVA.getTitle());
+                break;
+            case 3:
+                this.nameOfCompany = String.valueOf(CompanyNames.BUILDINVEST.getTitle());
+                break;
+            default:
+                throw new Exception("You entered wrong value!");
+        }
     }
 
     public void setNumberOfEmployees(int numberOfEmployees){
@@ -116,8 +145,14 @@ public class BuildingCompany {
 
         int needEmployees;
         {
-
-            int quaterMetersForOne = 10, tmpNeedEmployees = houseArea / quaterMetersForOne + 1;
+            int quaterMetersForOne = 10;
+            ICalculateNeedEmployees calculateNeedEmployees = new ICalculateNeedEmployees() { //Lambda
+                @Override
+                public int needEmployee(int houseArea, int quaterMetersForOne) {
+                    return houseArea/quaterMetersForOne+1;
+                }
+            };
+            int tmpNeedEmployees = calculateNeedEmployees.needEmployee(houseArea,quaterMetersForOne);
 
             if (tmpNeedEmployees <= contractorCompany.getNumberOfEmployees()){
                 needEmployees = tmpNeedEmployees;
@@ -129,8 +164,9 @@ public class BuildingCompany {
         Time howLongItTakes = new Time();
         {
             int timeForOneEmployee = 35, OneHundredQM = 100, TwoHundredQM = 200;
-            double areaForOneEmployee = houseArea / needEmployees, pct15 = 0.15, pct35 = 0.35;
-            int days = (int)(areaForOneEmployee * timeForOneEmployee);
+            double pct15 = 0.15, pct35 = 0.35;
+            BinaryOperator<Integer> areaForOneEmployee = (houseAreaBO, needEmployeesBO) -> houseAreaBO / needEmployeesBO; //функциональные интерфейсы
+            int days = (int)(areaForOneEmployee.apply(houseArea, needEmployees) * timeForOneEmployee);
             if (houseArea <= OneHundredQM){
                 howLongItTakes.setHowLongItTakes(days);
             } else if (houseArea > OneHundredQM == houseArea <= TwoHundredQM) {
